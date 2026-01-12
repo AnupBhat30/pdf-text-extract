@@ -281,14 +281,47 @@ function showResult(fileName, content, isError = false) {
     
     if (isError) {
         resultDiv.innerHTML = `
-            <div class="document-title">${fileName}</div>
+            <div class="document-header">
+                <div class="document-title">${fileName}</div>
+            </div>
             <div class="error-message">${content}</div>
         `;
     } else {
         resultDiv.innerHTML = `
-            <div class="document-title">${fileName}</div>
+            <div class="document-header">
+                <div class="document-title">${fileName}</div>
+                <button class="copy-btn" title="Copy text" aria-label="Copy text from ${fileName}">
+                    <span class="copy-icon">📋</span>
+                    <span class="copy-text">Copy</span>
+                </button>
+            </div>
             <div class="document-content">${escapeHtml(content)}</div>
         `;
+        
+        // Add click handler for copy button
+        const copyBtn = resultDiv.querySelector('.copy-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const textOnly = content.replace(/^📄.*?\n\n/, '').replace(/^📝.*?\n\n/, '');
+                navigator.clipboard.writeText(textOnly).then(function() {
+                    const originalIcon = copyBtn.querySelector('.copy-icon').textContent;
+                    const originalText = copyBtn.querySelector('.copy-text').textContent;
+                    
+                    copyBtn.classList.add('copied');
+                    copyBtn.querySelector('.copy-icon').textContent = '✅';
+                    copyBtn.querySelector('.copy-text').textContent = 'Copied!';
+                    
+                    setTimeout(() => {
+                        copyBtn.classList.remove('copied');
+                        copyBtn.querySelector('.copy-icon').textContent = originalIcon;
+                        copyBtn.querySelector('.copy-text').textContent = originalText;
+                    }, 2000);
+                }).catch(function(err) {
+                    alert('Failed to copy text: ' + err.message);
+                });
+            });
+        }
     }
     
     outputDiv.appendChild(resultDiv);

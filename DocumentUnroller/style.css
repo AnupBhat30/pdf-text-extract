@@ -439,13 +439,61 @@ body {
   animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.document-title {
+.document-header {
   padding: 16px 24px;
-  font-size: 17px;
-  font-weight: 600;
   background: var(--c-header-bg);
   border-bottom: 1px solid var(--c-border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.document-title {
+  font-size: 17px;
+  font-weight: 600;
   color: var(--c-text-primary);
+  flex: 1;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: var(--c-accent-light);
+  color: var(--c-accent);
+  border: 1px solid var(--c-accent);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-duration) ease-out;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.copy-btn:hover {
+  background-color: var(--c-accent);
+  color: var(--c-surface);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.copy-btn:active {
+  transform: translateY(0);
+}
+
+.copy-btn.copied {
+  background-color: var(--c-success);
+  border-color: var(--c-success);
+  color: var(--c-surface);
+}
+
+.copy-icon {
+  display: inline-block;
+  font-size: 14px;
 }
 
 .document-content {
