@@ -465,24 +465,19 @@ function setupThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     if (!themeToggle) return;
 
-    // Check for saved theme preference or use system preference
+    // Check for saved theme preference, default to dark
     const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     if (savedTheme) {
         document.documentElement.setAttribute('data-theme', savedTheme);
-    } else if (systemPrefersDark) {
-        // We don't explicitly set it to allow CSS media queries to work
+    } else {
+        // Default to dark theme (no explicit attribute needed, it's the CSS default)
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
     }
 
     themeToggle.addEventListener('click', () => {
-        let currentTheme = document.documentElement.getAttribute('data-theme');
-        
-        // If no explicit theme, detect from system
-        if (!currentTheme) {
-            currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-
+        let currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
