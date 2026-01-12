@@ -1,0 +1,11 @@
+# Redirect common variations to main URL
+/index / 200
+/index.html / 200
+/home / 301
+/extract / 301
+/pdf-extractor / 301
+/document-extractor / 301
+/text-extractor / 301
+
+# Handle trailing slashes
+/* /:splat 200

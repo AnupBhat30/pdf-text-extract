@@ -1,4 +1,33 @@
+# Document Unroller - Robots.txt
+# Last updated: 2026-01-12
+
+# Allow all bots
 User-agent: *
 Allow: /
+Disallow: /.*
 
-Sitemap: https://document-unroller.vercel.app/sitemap.xml
+# Specific rules for search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Disallow bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+# Sitemap locations
+Sitemap: https://pdf-text-extract-five.vercel.app/sitemap.xml
+Sitemap: https://pdf-text-extract-five.vercel.app/sitemap-index.xml
