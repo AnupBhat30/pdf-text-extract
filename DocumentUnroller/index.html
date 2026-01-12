@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document Unroller | Premium Text Extraction</title>
+    <meta name="description" content="A premium, secure, and fast document text extractor. Extract text from PDF, Word, and text files instantly in your browser." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Document Unroller | Premium Text Extraction" />
+    <meta property="og:description" content="Extract text from documents instantly with a beautiful, minimalist interface." />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+
+    <link rel="stylesheet" href="style.css" />
+    <!-- PDF.js with better loading -->
+    <script src="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+    <script src="https://unpkg.com/mammoth@1.11.0/mammoth.browser.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="header-top">
+          <button type="button" id="theme-toggle" class="theme-toggle-btn" title="Toggle theme">
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
+          </button>
+        </div>
+        <h1 class="title">📄 PDF Text Extractor</h1>
+        <p class="subtitle">
+          Extract text from PDFs, Word docs, and other documents instantly
+        </p>
+      </header>
+
+      <main class="main">
+        <form id="upload-form" class="upload-form">
+          <div class="upload-zone" id="upload-zone">
+            <div class="upload-icon">📄</div>
+            <h2 class="upload-title">Document Text Extractor</h2>
+            <p class="upload-description">
+              Extract text from PDF files, Word documents, and other text
+              formats
+            </p>
+            <div class="upload-buttons">
+              <button
+                type="button"
+                class="upload-btn-secondary"
+                id="folder-btn"
+              >
+                <span class="btn-icon">📁</span>
+                <span class="btn-text">Upload Folder</span>
+              </button>
+              <button type="button" class="upload-btn-secondary" id="files-btn">
+                <span class="btn-icon">📄</span>
+                <span class="btn-text">Upload Files</span>
+              </button>
+            </div>
+            <p class="upload-formats">
+              Supports PDF, DOCX, TXT, MD, RTF, CSV, JSON, XML, HTML, LOG files
+            </p>
+            <p class="upload-note">
+              Drag and drop files or folders anywhere on this page
+            </p>
+          </div>
+
+          <input
+            type="file"
+            id="folder-input"
+            class="file-input"
+            multiple
+            webkitdirectory
+            accept=".pdf,.docx,.txt,.md,.rtf,.csv,.json,.xml,.html,.log"
+          />
+          <input
+            type="file"
+            id="files-input"
+            class="file-input"
+            multiple
+            accept=".pdf,.docx,.txt,.md,.rtf,.csv,.json,.xml,.html,.log"
+          />
+          <div class="form-actions">
+            <button type="submit" class="upload-btn">Extract Text</button>
+            <span class="file-counter"
+              >Files selected: <span id="file-count">0</span></span
+            >
+          </div>
+        </form>
+
+        <div class="controls-bar" id="controls-bar">
+          <div class="controls-info">
+            <span class="processed-count"
+              >Processed: <span id="processed-count">0</span></span
+            >
+            <button type="button" class="copy-all-btn" id="copy-all-btn">
+              📋 Copy All Text
+            </button>
+          </div>
+        </div>
+
+        <div id="output" class="output"></div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

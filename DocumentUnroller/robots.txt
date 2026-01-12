@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://document-unroller.vercel.app/sitemap.xml
